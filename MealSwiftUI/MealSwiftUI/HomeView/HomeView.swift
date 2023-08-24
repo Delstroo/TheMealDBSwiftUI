@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var mealService: MealService
     @StateObject var homeVM = HomeViewModel()
-
+    
     var searchTextBinding: Binding<String> {
         Binding<String>(
             get: { self.homeVM.search },
@@ -31,19 +31,26 @@ struct HomeView: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 40)
                 })
-
+                
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         
                         ForEach(MealService.CategoryMealSort.allCases, id: \.self) { category in
-                            Text(category.rawValue)
-                                .fontWeight(.semibold)
-                                .foregroundColor(mealService.categorySelected != category.rawValue ? Color(UIColor.secondaryLabel.withAlphaComponent(0.45)) : Color(.label))
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 12)
-                                .frame(maxWidth: .infinity)
-                            
+                            HStack {
+                                Text(category.rawValue)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(mealService.categorySelected != category.rawValue ? Color(UIColor.secondaryLabel.withAlphaComponent(0.45)) : Color(.label))
+                                    .padding(.vertical, 8)
+                                    .padding(.leading, 12)
+                                    .frame(maxWidth: .infinity)
+                                
+                                Image(category.rawValue)
+                                    .resizable()
+                                    .frame(width: 25, height: 25)
+                                    .padding(.trailing, 12)
+//                                    .padding(.leading, 6)
+                            }
                                 .background {
                                     if mealService.categorySelected == category.rawValue {
                                         Capsule()
@@ -63,6 +70,7 @@ struct HomeView: View {
                     }//:Hstack
                     .padding(.horizontal, 12)
                 }//:ScrollView
+                
                 ScrollView(.vertical, showsIndicators: false) {
                     LazyVGrid(columns: [
                         GridItem(.flexible()), // You can adjust .flexible() as needed
