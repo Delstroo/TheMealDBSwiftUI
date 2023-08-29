@@ -22,6 +22,31 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                HStack(spacing: 12) {
+                    Button {
+                        // Leading button action
+                    } label: {
+                        Image(systemName: "person")
+                    }
+                    .frame(width: 60, height: 60)
+                    .background(Color(uiColor: .secondaryLabel))
+                    .foregroundColor(.primary)
+                    .cornerRadius(15)
+
+                    Spacer() // This will push the following button to the trailing edge
+
+                    Button {
+                        // Trailing button action
+                    } label: {
+                        Image(systemName: "person.fill")
+                    }
+                    .frame(width: 60, height: 60)
+                    .background(Color(uiColor: .secondaryLabel))
+                    .foregroundColor(.primary)
+                    .cornerRadius(15)
+                }
+                .frame(maxWidth: .infinity) // This makes the HStack fill the width of the screen
+                .padding(.horizontal, 20)
                 TopHomeView()
                 HStack(spacing: 12, content: {
                     CustomSearchBar(searchText: searchTextBinding)

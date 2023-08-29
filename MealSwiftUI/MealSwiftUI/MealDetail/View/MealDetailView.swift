@@ -33,7 +33,9 @@ struct MealDetailView: View {
                                         .frame(maxWidth: .infinity, alignment: .leading)
 
                                     Button(detailVM.isIngredientsTapped ? "See less" : "See more") {
-                                        detailVM.isIngredientsTapped.toggle()
+                                        withAnimation {
+                                            detailVM.isIngredientsTapped.toggle()
+                                        }
                                     }
                                     .foregroundColor(.blue)
                                     .font(.title3)
@@ -75,9 +77,9 @@ struct MealDetailView: View {
                                 .padding(.horizontal, 8)
                             
                         }
-//                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 8)
                         .padding(.top, 24)
-                        .background(Color(uiColor: .systemBackground))
+                        .background(Color("bgColor"))
                         .cornerRadius(20)
                     }
 
