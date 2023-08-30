@@ -11,5 +11,6 @@ final class HomeViewModel: ObservableObject {
 
     @Published var search = ""
     @Published var isSearchTapped: Bool = false
+    @Published var isLoginTapped: Bool = false
 
 }

@@ -19,29 +19,31 @@ struct HomeView: View {
     }
     
     var animation: Namespace.ID
+    @State private var isLoginViewPresented = false
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 HStack(spacing: 12) {
                     Button {
-                        // Leading button action
+
                     } label: {
-                        Image(systemName: "person")
+                        Image(systemName: "line.3.horizontal.decrease")
                     }
                     .frame(width: 60, height: 60)
-                    .background(Color(uiColor: .secondaryLabel))
+                    .background(Color(uiColor: .secondarySystemFill))
                     .foregroundColor(.primary)
                     .cornerRadius(15)
 
                     Spacer() // This will push the following button to the trailing edge
 
                     Button {
-                        // Trailing button action
+                        isLoginViewPresented.toggle()
                     } label: {
                         Image(systemName: "person.fill")
                     }
                     .frame(width: 60, height: 60)
-                    .background(Color(uiColor: .secondaryLabel))
+                    .background(Color(uiColor: .secondarySystemFill))
                     .foregroundColor(.primary)
                     .cornerRadius(15)
                 }
@@ -120,6 +122,11 @@ struct HomeView: View {
                 MealSearchView()
             }
         })//: FullScreenCover
+        .sheet(isPresented: $isLoginViewPresented) {
+            NavigationView {
+                LoginView()
+            }
+        }
         
         .onChange(of: mealService.categorySelected, perform: { newCategory in
             Task{

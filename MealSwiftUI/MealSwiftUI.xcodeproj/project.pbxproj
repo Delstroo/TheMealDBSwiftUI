@@ -28,6 +28,7 @@
 		FCEEC5CA2A93EFEB00C0F9A9 /* DetailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5C92A93EFEB00C0F9A9 /* DetailImageView.swift */; };
 		FCEEC5CD2A9533A100C0F9A9 /* MealSearchCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5CC2A9533A100C0F9A9 /* MealSearchCellView.swift */; };
 		FCEEC5CF2A95360200C0F9A9 /* MealSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5CE2A95360200C0F9A9 /* MealSearchView.swift */; };
+		FCEFB73B2A9FBF32005D4F0F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEFB73A2A9FBF32005D4F0F /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		FCEEC5C92A93EFEB00C0F9A9 /* DetailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageView.swift; sourceTree = "<group>"; };
 		FCEEC5CC2A9533A100C0F9A9 /* MealSearchCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSearchCellView.swift; sourceTree = "<group>"; };
 		FCEEC5CE2A95360200C0F9A9 /* MealSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSearchView.swift; sourceTree = "<group>"; };
+		FCEFB73A2A9FBF32005D4F0F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		FCEEC58F2A93C77100C0F9A9 /* MealSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				FCEFB7392A9FBF10005D4F0F /* LoginView */,
 				FCEEC5CB2A95338F00C0F9A9 /* SearchMeals */,
 				FCEEC5BF2A93E8E800C0F9A9 /* MealDetail */,
 				FCEEC5B62A93D2F100C0F9A9 /* Repositories */,
@@ -214,6 +217,14 @@
 			path = SearchMeals;
 			sourceTree = "<group>";
 		};
+		FCEFB7392A9FBF10005D4F0F /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				FCEFB73A2A9FBF32005D4F0F /* LoginView.swift */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,6 +313,7 @@
 				FCEEC5B82A93D2FC00C0F9A9 /* Repositories.swift in Sources */,
 				FCEEC5B32A93D22F00C0F9A9 /* NetworkingLayer.swift in Sources */,
 				FCEEC5A52A93C85500C0F9A9 /* TopHomeView.swift in Sources */,
+				FCEFB73B2A9FBF32005D4F0F /* LoginView.swift in Sources */,
 				FCEEC5C82A93E95500C0F9A9 /* DetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
