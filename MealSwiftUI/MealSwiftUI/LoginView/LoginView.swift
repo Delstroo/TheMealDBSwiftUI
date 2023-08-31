@@ -6,6 +6,22 @@
 //
 
 import SwiftUI
+import Firebase
+
+class FirebaseManager: NSObject {
+    
+    let auth: Auth
+    
+    static let shared = FirebaseManager()
+    
+    override init() {
+        FirebaseApp.configure()
+        
+        self.auth = Auth.auth()
+        
+        super.init()
+    }
+}
 
 struct LoginView: View {
     
@@ -46,7 +62,7 @@ struct LoginView: View {
                     .cornerRadius(15)
                     
                     Button {
-                        
+                        handleAction()
                     } label: {
                         HStack {
                             Spacer()
@@ -60,11 +76,46 @@ struct LoginView: View {
                         .padding(.top, 25)
                     }
                     
+                    Text(self.loginStatusMessage)
+                        .foregroundColor(.red)
+                    
                 }
                 .padding()
             }
         }
         .navigationTitle(isLoginMode ? "Login" : "Create Account")
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func handleAction() {
+        if isLoginMode {
+            loginUser()
+        } else {
+            createNewAccount()
+        }
+    }
+    
+    @State var loginStatusMessage = ""
+    
+    private func createNewAccount() {
+        FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
+            if let err = error {
+                self.loginStatusMessage = "Failed to create user: \(err.localizedDescription)"
+                return 
+            }
+            print("Succ created user, \(result?.user.uid ?? "")")
+            self.loginStatusMessage = "Succ created user, \(result?.user.uid ?? "")"
+        }
+    }
+    
+    private func loginUser() {
+        FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
+            if let err = error {
+                self.loginStatusMessage = "Failed to login: \(error?.localizedDescription ?? "")"
+                return
+            }
+            self.loginStatusMessage = "Succ logged in, welcome back \(result?.user.uid ?? "")"
+        }
     }
 }
 
