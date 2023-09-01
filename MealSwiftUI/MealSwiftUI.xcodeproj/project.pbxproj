@@ -33,6 +33,7 @@
 		FCEFB7402AA11F33005D4F0F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = FCEFB73F2AA11F33005D4F0F /* FirebaseFirestore */; };
 		FCEFB7422AA11F33005D4F0F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FCEFB7412AA11F33005D4F0F /* FirebaseStorage */; };
 		FCEFB7442AA12068005D4F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */; };
+		FCEFB7462AA2560E005D4F0F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		FCEEC5CE2A95360200C0F9A9 /* MealSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSearchView.swift; sourceTree = "<group>"; };
 		FCEFB73A2A9FBF32005D4F0F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				FCEEC5942A93C77200C0F9A9 /* Assets.xcassets */,
 				FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */,
 				FCEEC5962A93C77200C0F9A9 /* Preview Content */,
+				FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */,
 			);
 			path = MealSwiftUI;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				FCEEC5932A93C77100C0F9A9 /* HomeView.swift in Sources */,
 				FCEEC59F2A93C7C300C0F9A9 /* SearchBarView.swift in Sources */,
 				FCEEC5AE2A93CF2500C0F9A9 /* Meal.swift in Sources */,
+				FCEFB7462AA2560E005D4F0F /* ImagePicker.swift in Sources */,
 				FCEEC5C62A93E92100C0F9A9 /* MealDetailView.swift in Sources */,
 				FCEEC5CA2A93EFEB00C0F9A9 /* DetailImageView.swift in Sources */,
 				FCEEC5CD2A9533A100C0F9A9 /* MealSearchCellView.swift in Sources */,

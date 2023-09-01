@@ -11,6 +11,7 @@ import Firebase
 class FirebaseManager: NSObject {
     
     let auth: Auth
+    let storage: Storage
     
     static let shared = FirebaseManager()
     
@@ -18,6 +19,7 @@ class FirebaseManager: NSObject {
         FirebaseApp.configure()
         
         self.auth = Auth.auth()
+        self.storage = Storage.storage()
         
         super.init()
     }
@@ -28,6 +30,9 @@ struct LoginView: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    @State var shouldShowImagePicker = false
+    @State var image: UIImage?
+    @State private var isPopupVisible = false
     
     var body: some View {
         NavigationView {
@@ -44,10 +49,23 @@ struct LoginView: View {
                     
                     if !isLoginMode {
                         Button {
-                            
+                            shouldShowImagePicker.toggle()
                         } label: {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 64))
+                            VStack {
+                                if let image = self.image {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 120, height: 120)
+                                        .cornerRadius(60)
+                                } else {
+                                    Image(systemName: "person.fill")
+                                        .font(.system(size: 120))
+                                        .foregroundColor(Color(uiColor: .label))
+                                        .overlay(RoundedRectangle(cornerRadius: 120).stroke(Color(uiColor: .label), lineWidth: 3))
+                                }
+                            }
+                            .padding()
                         }
                     }
                     
@@ -76,15 +94,30 @@ struct LoginView: View {
                         .padding(.top, 25)
                     }
                     
-                    Text(self.loginStatusMessage)
-                        .foregroundColor(.red)
                     
+                    // Use the custom popup view with scale effect
+                    ZStack {
+                        if isPopupVisible {
+                            Color.black.opacity(0.4).edgesIgnoringSafeArea(.all)
+                                .onTapGesture {
+                                    isPopupVisible = false
+                                }
+                            
+                            PopupView(isPresented: $isPopupVisible, message: $loginStatusMessage)
+                                .scaleEffect(isPopupVisible ? 1.0 : 0.1)
+                                .opacity(isPopupVisible ? 1.0 : 0.0)
+                                .animation(.easeInOut(duration: 0.3))
+                        }
+                    }
                 }
                 .padding()
             }
         }
         .navigationTitle(isLoginMode ? "Login" : "Create Account")
         .navigationViewStyle(StackNavigationViewStyle())
+        .fullScreenCover(isPresented: $shouldShowImagePicker) {
+            ImagePicker(image: $image)
+        }
     }
     
     private func handleAction() {
@@ -101,10 +134,12 @@ struct LoginView: View {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, error in
             if let err = error {
                 self.loginStatusMessage = "Failed to create user: \(err.localizedDescription)"
-                return 
+                self.isPopupVisible = true
+                return
             }
-            print("Succ created user, \(result?.user.uid ?? "")")
-            self.loginStatusMessage = "Succ created user, \(result?.user.uid ?? "")"
+//            self.loginStatusMessage = "Succ created user, \(result?.user.uid ?? "")"
+            
+            self.persistImageToStorage()
         }
     }
     
@@ -112,9 +147,36 @@ struct LoginView: View {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) { result, error in
             if let err = error {
                 self.loginStatusMessage = "Failed to login: \(error?.localizedDescription ?? "")"
+                self.isPopupVisible = true
                 return
             }
-            self.loginStatusMessage = "Succ logged in, welcome back \(result?.user.uid ?? "")"
+//            self.loginStatusMessage = "Succ logged in, welcome back \(result?.user.uid ?? "")"
+        }
+    }
+    
+    private func persistImageToStorage() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid,
+        let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
+        
+        ref.putData(imageData, metadata: nil) { metaData, err in
+            if let err = err {
+                self.loginStatusMessage = "Failed to push image to storage: \(err.localizedDescription)"
+                self.isPopupVisible = true
+                return
+            }
+            
+            ref.downloadURL { url, err in
+                if let err = err {
+                    self.loginStatusMessage = "Failed to retrieve downloadURL: \(err)"
+                    self.isPopupVisible = true
+                    return
+                }
+                
+//                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
+                
+            }
+            
         }
     }
 }
@@ -122,5 +184,27 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+    }
+}
+
+
+struct PopupView: View {
+    @Binding var isPresented: Bool
+    @Binding var message: String
+
+    var body: some View {
+        VStack {
+            Text(message)
+                .foregroundColor(.red)
+                .padding()
+            
+            Button("Dismiss") {
+                isPresented = false
+                message = ""
+            }
+        }
+        .frame(width: 300, height: 150)
+        .background(Color(uiColor: .secondarySystemBackground))
+        .cornerRadius(10)
     }
 }
