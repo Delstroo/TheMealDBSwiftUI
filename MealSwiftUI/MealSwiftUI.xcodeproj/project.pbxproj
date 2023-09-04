@@ -34,6 +34,7 @@
 		FCEFB7422AA11F33005D4F0F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FCEFB7412AA11F33005D4F0F /* FirebaseStorage */; };
 		FCEFB7442AA12068005D4F0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */; };
 		FCEFB7462AA2560E005D4F0F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */; };
+		FCEFB7492AA6528E005D4F0F /* BottomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEFB7482AA6528E005D4F0F /* BottomNavigationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		FCEFB73A2A9FBF32005D4F0F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FCEFB7482AA6528E005D4F0F /* BottomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		FCEEC58F2A93C77100C0F9A9 /* MealSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				FCEFB7472AA6527E005D4F0F /* BottomView */,
 				FCEFB7392A9FBF10005D4F0F /* LoginView */,
 				FCEEC5CB2A95338F00C0F9A9 /* SearchMeals */,
 				FCEEC5BF2A93E8E800C0F9A9 /* MealDetail */,
@@ -237,6 +240,14 @@
 			path = LoginView;
 			sourceTree = "<group>";
 		};
+		FCEFB7472AA6527E005D4F0F /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				FCEFB7482AA6528E005D4F0F /* BottomNavigationView.swift */,
+			);
+			path = BottomView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -333,6 +344,7 @@
 				FCEEC5BA2A93D30500C0F9A9 /* RepositoriesProtocol.swift in Sources */,
 				FCEEC5A82A93C92800C0F9A9 /* HomeViewModel.swift in Sources */,
 				FCEEC5B82A93D2FC00C0F9A9 /* Repositories.swift in Sources */,
+				FCEFB7492AA6528E005D4F0F /* BottomNavigationView.swift in Sources */,
 				FCEEC5B32A93D22F00C0F9A9 /* NetworkingLayer.swift in Sources */,
 				FCEEC5A52A93C85500C0F9A9 /* TopHomeView.swift in Sources */,
 				FCEFB73B2A9FBF32005D4F0F /* LoginView.swift in Sources */,
