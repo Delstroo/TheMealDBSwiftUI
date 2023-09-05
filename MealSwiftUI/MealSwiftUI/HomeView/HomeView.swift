@@ -140,9 +140,25 @@ struct HomeView: View {
                                 .animation(.easeInOut)
                             }
                         }
-                        .frame(width: geometry.size.width, alignment: .bottom)
-                        , alignment: .bottom
+                        .frame(width: geometry.size.width, alignment: .bottom),
+                        alignment: .bottom
                     )
+                    .fullScreenCover(isPresented: $homeVM.isSearchTapped, content: {
+                        NavigationStack {
+                            MealSearchView()
+                        }
+                    })//: FullScreenCover
+//                    .sheet(isPresented: $isLoginViewPresented) {
+//                        NavigationView {
+//                            LoginView()
+//                        }
+//                    }
+                    .fullScreenCover(isPresented: $isLoginViewPresented, content: {
+                        NavigationStack {
+                            LoginView(animation: animation)
+                        }
+                            .transition(.identity)
+                    })
                     .onChange(of: mealService.categorySelected, perform: { newCategory in
                         Task {
                             await mealService.fetchMealCategory(category: newCategory)

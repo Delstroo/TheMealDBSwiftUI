@@ -26,6 +26,7 @@ class FirebaseManager: NSObject {
 }
 
 struct LoginView: View {
+    var animation: Namespace.ID
     
     @State var isLoginMode = false
     @State var email = ""
@@ -33,6 +34,7 @@ struct LoginView: View {
     @State var shouldShowImagePicker = false
     @State var image: UIImage?
     @State private var isPopupVisible = false
+    @State var isHomeButtonPressed = false
     
     var body: some View {
         NavigationView {
@@ -60,7 +62,7 @@ struct LoginView: View {
                                         .cornerRadius(60)
                                 } else {
                                     Image(systemName: "person.fill")
-                                        .font(.system(size: 120))
+                                        .font(.system(size: 130))
                                         .foregroundColor(Color(uiColor: .label))
                                         .overlay(RoundedRectangle(cornerRadius: 120).stroke(Color(uiColor: .label), lineWidth: 3))
                                 }
@@ -117,6 +119,9 @@ struct LoginView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .fullScreenCover(isPresented: $shouldShowImagePicker) {
             ImagePicker(image: $image)
+        }
+        .fullScreenCover(isPresented: $isHomeButtonPressed) {
+            HomeView(animation: animation)
         }
     }
     
@@ -182,8 +187,9 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    @Namespace static var animation
     static var previews: some View {
-        LoginView()
+        LoginView(animation: animation)
     }
 }
 
