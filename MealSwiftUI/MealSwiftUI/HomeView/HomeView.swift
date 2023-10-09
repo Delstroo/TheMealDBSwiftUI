@@ -122,27 +122,6 @@ struct HomeView: View {
                         }
                     }
                     .background(Color("bgColor"))
-                    .overlay(
-                        VStack {
-                            if isToolbarVisible {
-                                BottomToolbarView(
-                                    homeAction: {
-                                        // Action for the Home button
-                                    },
-                                    addRecipeAction: {
-                                        // Action for the Add Recipe button
-                                    },
-                                    accountAction: {
-                                        isLoginViewPresented.toggle()
-                                    }
-                                )
-                                .transition(.move(edge: .bottom))
-                                .animation(.easeInOut)
-                            }
-                        }
-                        .frame(width: geometry.size.width, alignment: .bottom),
-                        alignment: .bottom
-                    )
                     .fullScreenCover(isPresented: $homeVM.isSearchTapped, content: {
                         NavigationStack {
                             MealSearchView()
@@ -154,10 +133,10 @@ struct HomeView: View {
 //                        }
 //                    }
                     .fullScreenCover(isPresented: $isLoginViewPresented, content: {
-                        NavigationStack {
-                            LoginView(animation: animation)
-                        }
-                            .transition(.identity)
+//                        NavigationStack {
+//                            LoginView(animation: animation)
+//                        }
+//                            .transition(.identity)
                     })
                     .onChange(of: mealService.categorySelected, perform: { newCategory in
                         Task {
