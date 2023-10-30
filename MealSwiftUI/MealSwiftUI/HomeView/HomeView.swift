@@ -21,8 +21,17 @@ struct HomeView: View {
     var animation: Namespace.ID
     @State private var isLoginViewPresented = false
     @State private var isToolbarVisible = true
+    @State var isFilterApplied: Bool = false
     @State private var scrollOffset: CGFloat = 0
     @State private var lastContentOffset: CGFloat = 0
+    
+    var filteredCategories: [Categories] {
+        if isFilterApplied {
+            return mealService.mealCategory.sorted(by: { $1.strMeal < $0.strMeal })
+        } else {
+            return mealService.mealCategory.sorted(by: { $0.strMeal < $1.strMeal })
+        }
+    }
 
     
     var body: some View {
@@ -32,7 +41,9 @@ struct HomeView: View {
                     ScrollView {
                         HStack(spacing: 12) {
                             Button {
-                                
+                                withAnimation(.easeInOut) {
+                                    isFilterApplied.toggle()
+                                }
                             } label: {
                                 Image(systemName: "line.3.horizontal.decrease")
                             }
@@ -57,12 +68,29 @@ struct HomeView: View {
                         .padding(.horizontal, 20)
                         TopHomeView()
                         HStack(spacing: 12, content: {
-                            CustomSearchBar(searchText: searchTextBinding)
-                                .onTapGesture {
-                                    homeVM.isSearchTapped.toggle()
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 25)
+                                    .frame(height: 40)
+                                    .foregroundColor(Color(.systemGray5))
+                                HStack {
+                                    Image(systemName: "magnifyingglass")
+                                        .resizable()
+                                        .foregroundColor(.gray)
+                                        .frame(width: 15, height: 15, alignment: .leading)
+                                    
+                                    Divider()
+                                        .padding(.vertical, 6)
+                                    
+                                    Text("Search")
+                                        .foregroundStyle(.secondary)
                                 }
-                                .padding(.horizontal, 20)
-                                .padding(.bottom, 40)
+                                .padding(.horizontal)
+                            }
+                            .onTapGesture {
+                                homeVM.isSearchTapped.toggle()
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 20)
                         })
                         
                         
@@ -109,7 +137,7 @@ struct HomeView: View {
                                 GridItem(.flexible()), // You can adjust .flexible() as needed
                                 GridItem(.flexible())
                             ]) {
-                                ForEach(mealService.mealCategory, id: \.self) { meals in
+                                ForEach(filteredCategories, id: \.self) { meals in
                                     NavigationLink(value: meals) {
                                         CategoryView(category: meals)
                                     }
@@ -195,6 +223,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(animation: animation)
             .environmentObject(MealService()) // Provide the MealService environment object here
+            .preferredColorScheme(.dark)
     }
 }
 
