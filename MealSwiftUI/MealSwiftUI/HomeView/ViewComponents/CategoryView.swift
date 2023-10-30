@@ -23,10 +23,11 @@ struct CategoryView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .shadow(color: .black.opacity(0.4), radius: 2, x: -6, y: 3)
                             .overlay {
-                                LinearGradient(colors: [.clear, .black.opacity(0.45)], startPoint: .top, endPoint: .bottom)
+                                LinearGradient(colors: [.clear, .black], startPoint: .top, endPoint: .bottom)
                                     .cornerRadius(12)
                             }
                             .overlay(alignment: .bottomLeading) {
+//                                LinearGradient(gradient: Gradient(colors: [.black.opacity(0.3)]), startPoint: .center, endPoint: .bottom)
                                 Text(category.strMeal)
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)

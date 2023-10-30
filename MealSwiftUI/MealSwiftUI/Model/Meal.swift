@@ -42,4 +42,3 @@ struct AreaResponse: Codable {
 struct Area: Codable {
     let strArea: String
 }
-
