@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
 		1B24584B2AF043A00093A9B5 /* emptyAnimation in Resources */ = {isa = PBXBuildFile; fileRef = 1B24584A2AF043A00093A9B5 /* emptyAnimation */; };
 		1B24584F2AF0476D0093A9B5 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B24584E2AF0476D0093A9B5 /* EmptyView.swift */; };
+=======
+		1B2458462AF0322D0093A9B5 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2458452AF0322D0093A9B5 /* Meal.swift */; };
+>>>>>>> main
 		FCEEC5912A93C77100C0F9A9 /* MealSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5902A93C77100C0F9A9 /* MealSwiftUIApp.swift */; };
 		FCEEC5932A93C77100C0F9A9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5922A93C77100C0F9A9 /* HomeView.swift */; };
 		FCEEC5952A93C77200C0F9A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEEC5942A93C77200C0F9A9 /* Assets.xcassets */; };
@@ -17,7 +21,6 @@
 		FCEEC5A52A93C85500C0F9A9 /* TopHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5A42A93C85500C0F9A9 /* TopHomeView.swift */; };
 		FCEEC5A82A93C92800C0F9A9 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5A72A93C92800C0F9A9 /* HomeViewModel.swift */; };
 		FCEEC5AB2A93CAC000C0F9A9 /* MealService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5AA2A93CAC000C0F9A9 /* MealService.swift */; };
-		FCEEC5AE2A93CF2500C0F9A9 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5AD2A93CF2500C0F9A9 /* Meal.swift */; };
 		FCEEC5B02A93CF2D00C0F9A9 /* MealDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5AF2A93CF2D00C0F9A9 /* MealDescription.swift */; };
 		FCEEC5B32A93D22F00C0F9A9 /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5B22A93D22F00C0F9A9 /* NetworkingLayer.swift */; };
 		FCEEC5B52A93D28700C0F9A9 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5B42A93D28700C0F9A9 /* NetworkRequest.swift */; };
@@ -36,8 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
 		1B24584A2AF043A00093A9B5 /* emptyAnimation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = emptyAnimation; path = ../../../../../Downloads/emptyAnimation; sourceTree = "<group>"; };
 		1B24584E2AF0476D0093A9B5 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+=======
+		1B2458452AF0322D0093A9B5 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+>>>>>>> main
 		FCEEC58D2A93C77100C0F9A9 /* MealSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEEC5902A93C77100C0F9A9 /* MealSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSwiftUIApp.swift; sourceTree = "<group>"; };
 		FCEEC5922A93C77100C0F9A9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -47,7 +54,6 @@
 		FCEEC5A42A93C85500C0F9A9 /* TopHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHomeView.swift; sourceTree = "<group>"; };
 		FCEEC5A72A93C92800C0F9A9 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		FCEEC5AA2A93CAC000C0F9A9 /* MealService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealService.swift; sourceTree = "<group>"; };
-		FCEEC5AD2A93CF2500C0F9A9 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		FCEEC5AF2A93CF2D00C0F9A9 /* MealDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDescription.swift; sourceTree = "<group>"; };
 		FCEEC5B22A93D22F00C0F9A9 /* NetworkingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		FCEEC5B42A93D28700C0F9A9 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -185,8 +191,8 @@
 		FCEEC5AC2A93CF1C00C0F9A9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FCEEC5AD2A93CF2500C0F9A9 /* Meal.swift */,
 				FCEEC5AF2A93CF2D00C0F9A9 /* MealDescription.swift */,
+				1B2458452AF0322D0093A9B5 /* Meal.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,7 +297,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					FCEEC58C2A93C77100C0F9A9 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -339,8 +345,11 @@
 			files = (
 				FCEEC5932A93C77100C0F9A9 /* HomeView.swift in Sources */,
 				FCEEC59F2A93C7C300C0F9A9 /* SearchBarView.swift in Sources */,
+<<<<<<< HEAD
 				1B24584F2AF0476D0093A9B5 /* EmptyView.swift in Sources */,
 				FCEEC5AE2A93CF2500C0F9A9 /* Meal.swift in Sources */,
+=======
+>>>>>>> main
 				FCEFB7462AA2560E005D4F0F /* ImagePicker.swift in Sources */,
 				FCEEC5C62A93E92100C0F9A9 /* MealDetailView.swift in Sources */,
 				FCEEC5CA2A93EFEB00C0F9A9 /* DetailImageView.swift in Sources */,
@@ -355,6 +364,7 @@
 				FCEEC5BA2A93D30500C0F9A9 /* RepositoriesProtocol.swift in Sources */,
 				FCEEC5A82A93C92800C0F9A9 /* HomeViewModel.swift in Sources */,
 				FCEEC5B82A93D2FC00C0F9A9 /* Repositories.swift in Sources */,
+				1B2458462AF0322D0093A9B5 /* Meal.swift in Sources */,
 				FCEFB7492AA6528E005D4F0F /* BottomNavigationView.swift in Sources */,
 				FCEEC5B32A93D22F00C0F9A9 /* NetworkingLayer.swift in Sources */,
 				FCEEC5A52A93C85500C0F9A9 /* TopHomeView.swift in Sources */,
@@ -401,6 +411,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,6 +472,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

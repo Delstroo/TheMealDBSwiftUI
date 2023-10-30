@@ -18,11 +18,14 @@ struct MealSearchView: View {
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 10, height: 10)
                         .foregroundColor(Color(uiColor: .label))
                         .padding()
                         .background {
                             Circle()
-                                .foregroundColor(Color(uiColor: .secondaryLabel))
+                                .foregroundColor(.secondary.opacity(0.55))
+                                .frame(width: 24, height: 24)
                         }
                 }//: Button
                 .buttonStyle(.plain)
@@ -31,6 +34,7 @@ struct MealSearchView: View {
             .padding(.horizontal, 12)
             VStack(spacing: 20) {
                 CustomSearchBar(searchText: $search)
+                    .resignKeyboardOnDrag()
                 if search != "" {
                     ForEach(mealService.searchMeal, id: \.self) { meal in
                         NavigationLink(value: meal) {
@@ -61,6 +65,15 @@ struct MealSearchView_Previews: PreviewProvider {
         NavigationStack{
             MealSearchView()
                 .environmentObject(MealService())
+                .preferredColorScheme(.dark)
         }
+    }
+}
+
+extension View {
+    func resignKeyboardOnDrag() -> some View {
+        return self.simultaneousGesture(DragGesture().onChanged({ _ in
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }))
     }
 }
