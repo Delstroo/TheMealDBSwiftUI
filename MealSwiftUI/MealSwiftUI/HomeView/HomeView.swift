@@ -155,17 +155,11 @@ struct HomeView: View {
                             MealSearchView()
                         }
                     })//: FullScreenCover
-//                    .sheet(isPresented: $isLoginViewPresented) {
-//                        NavigationView {
-//                            LoginView()
-//                        }
-//                    }
-                    .fullScreenCover(isPresented: $isLoginViewPresented, content: {
-//                        NavigationStack {
-//                            LoginView(animation: animation)
-//                        }
-//                            .transition(.identity)
-                    })
+                    .sheet(isPresented: $isLoginViewPresented) {
+                        NavigationView {
+                            EmptyListView()
+                        }
+                    }
                     .onChange(of: mealService.categorySelected, perform: { newCategory in
                         Task {
                             await mealService.fetchMealCategory(category: newCategory)

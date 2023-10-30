@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
+		1B24584B2AF043A00093A9B5 /* emptyAnimation in Resources */ = {isa = PBXBuildFile; fileRef = 1B24584A2AF043A00093A9B5 /* emptyAnimation */; };
+		1B24584F2AF0476D0093A9B5 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B24584E2AF0476D0093A9B5 /* EmptyView.swift */; };
+=======
 		1B2458462AF0322D0093A9B5 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2458452AF0322D0093A9B5 /* Meal.swift */; };
+>>>>>>> main
 		FCEEC5912A93C77100C0F9A9 /* MealSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5902A93C77100C0F9A9 /* MealSwiftUIApp.swift */; };
 		FCEEC5932A93C77100C0F9A9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEEC5922A93C77100C0F9A9 /* HomeView.swift */; };
 		FCEEC5952A93C77200C0F9A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCEEC5942A93C77200C0F9A9 /* Assets.xcassets */; };
@@ -34,7 +39,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
+		1B24584A2AF043A00093A9B5 /* emptyAnimation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = emptyAnimation; path = ../../../../../Downloads/emptyAnimation; sourceTree = "<group>"; };
+		1B24584E2AF0476D0093A9B5 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+=======
 		1B2458452AF0322D0093A9B5 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+>>>>>>> main
 		FCEEC58D2A93C77100C0F9A9 /* MealSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MealSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEEC5902A93C77100C0F9A9 /* MealSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSwiftUIApp.swift; sourceTree = "<group>"; };
 		FCEEC5922A93C77100C0F9A9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -72,6 +82,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B24584D2AF0475A0093A9B5 /* PersonalMeals */ = {
+			isa = PBXGroup;
+			children = (
+				1B2458502AF05E930093A9B5 /* View */,
+				1B2458512AF05E9C0093A9B5 /* Components */,
+			);
+			path = PersonalMeals;
+			sourceTree = "<group>";
+		};
+		1B2458502AF05E930093A9B5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B2458512AF05E9C0093A9B5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1B24584E2AF0476D0093A9B5 /* EmptyView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		FCEEC5842A93C77100C0F9A9 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +125,7 @@
 		FCEEC58F2A93C77100C0F9A9 /* MealSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				1B24584D2AF0475A0093A9B5 /* PersonalMeals */,
 				FCEFB7472AA6527E005D4F0F /* BottomView */,
 				FCEEC5CB2A95338F00C0F9A9 /* SearchMeals */,
 				FCEEC5BF2A93E8E800C0F9A9 /* MealDetail */,
@@ -102,6 +137,7 @@
 				FCEEC5A22A93C80A00C0F9A9 /* HomeView */,
 				FCEEC5902A93C77100C0F9A9 /* MealSwiftUIApp.swift */,
 				FCEEC5942A93C77200C0F9A9 /* Assets.xcassets */,
+				1B24584A2AF043A00093A9B5 /* emptyAnimation */,
 				FCEFB7432AA12068005D4F0F /* GoogleService-Info.plist */,
 				FCEEC5962A93C77200C0F9A9 /* Preview Content */,
 				FCEFB7452AA2560E005D4F0F /* ImagePicker.swift */,
@@ -293,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B24584B2AF043A00093A9B5 /* emptyAnimation in Resources */,
 				FCEEC5982A93C77200C0F9A9 /* Preview Assets.xcassets in Resources */,
 				FCEFB7442AA12068005D4F0F /* GoogleService-Info.plist in Resources */,
 				FCEEC5952A93C77200C0F9A9 /* Assets.xcassets in Resources */,
@@ -308,6 +345,11 @@
 			files = (
 				FCEEC5932A93C77100C0F9A9 /* HomeView.swift in Sources */,
 				FCEEC59F2A93C7C300C0F9A9 /* SearchBarView.swift in Sources */,
+<<<<<<< HEAD
+				1B24584F2AF0476D0093A9B5 /* EmptyView.swift in Sources */,
+				FCEEC5AE2A93CF2500C0F9A9 /* Meal.swift in Sources */,
+=======
+>>>>>>> main
 				FCEFB7462AA2560E005D4F0F /* ImagePicker.swift in Sources */,
 				FCEEC5C62A93E92100C0F9A9 /* MealDetailView.swift in Sources */,
 				FCEEC5CA2A93EFEB00C0F9A9 /* DetailImageView.swift in Sources */,
