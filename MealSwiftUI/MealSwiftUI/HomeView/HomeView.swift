@@ -11,6 +11,7 @@ struct HomeView: View {
     @EnvironmentObject var mealService: MealService
     @StateObject var homeVM = HomeViewModel()
     @State private var selectedMeal: Categories?
+    @State private var savedMeals: [String] = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
 
     var searchTextBinding: Binding<String> {
         Binding<String>(
