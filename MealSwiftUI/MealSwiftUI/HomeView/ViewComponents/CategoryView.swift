@@ -11,13 +11,13 @@ struct CategoryView: View {
     var category: Categories
     var width = UIScreen.main.bounds.width * 0.45
     
-    var isStarred: Bool {
-            if let savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") {
-                return savedMeals.contains(category.idMeal)
-            }
-            return false
-        }
+    @State private var isStarred: Bool
 
+    init(category: Categories) {
+            self.category = category
+            _isStarred = State(initialValue: UserDefaults.standard.stringArray(forKey: "SavedMeals")?.contains(category.idMeal) ?? false)
+        }
+    
     var body: some View {
             VStack(spacing: 12) {
                 if category.strMealThumb != nil{
@@ -62,9 +62,6 @@ struct CategoryView: View {
                                                 .foregroundStyle(.yellow.opacity(0.65))
                                         }
                                 })
-                                .onTapGesture {
-                                    addToSavedMeals()
-                                }
                                 .padding(4)
                             }
                     } placeholder: {
@@ -80,18 +77,31 @@ struct CategoryView: View {
             .padding()
     }
     
+    func checkIsStarred() {
+        if let savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals"),
+           savedMeals.contains(category.idMeal) {
+            isStarred = true
+        }
+    }
+    
     func addToSavedMeals() {
         var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
+
         if isStarred {
             // If it's already starred, remove it
             savedMeals.removeAll { $0 == category.idMeal }
+            isStarred = false // Update isStarred
         } else {
             // If it's not starred, add it
             savedMeals.append(category.idMeal)
+            isStarred = true // Update isStarred
         }
+        
         UserDefaults.standard.set(savedMeals, forKey: "SavedMeals")
     }
 }
+
+
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
