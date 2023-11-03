@@ -11,34 +11,97 @@ struct MealSearchView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var mealService: MealService
     @State var search: String = ""
+    @State var randomString = ""
+    @State var mealIdeaString = ""
+    var placeholderStrings = ["Discover a Delicious Meal",
+                              "Find Your Next Culinary Adventure",
+                              "Search for a Tasty Dish",
+                              "Looking for a New Recipe?",
+                              "Explore Exciting Meal Ideas",
+                              "Start Your Food Journey Here",
+                              "Hungry for Inspiration?",
+                              "Try a New Culinary Experience",
+                              "On the Hunt for Yummy Recipes?",
+                              "Search for Your Next Favorite Dish"]
+    
+    var mealIdeasStrings = ["Beef Wellington",
+                           "English Breakfast",
+                           "Chicken Enhilada",
+                           "Key Lime Pie",
+                           "Rigatoni",
+                           "Poutine",
+                           "Fettuccine Alfredo",
+                           "Katsudon",
+                           "Salmon",
+                           "French Onion Soup",
+                           "Clam Chowder",
+                           "Vegan Lasagna",
+                           "Ratatouille"]
+        
     var body: some View {
         ScrollView {
             HStack {
+                Spacer()
                 Button {
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 12, height: 12, alignment: .center)
                         .foregroundColor(Color(uiColor: .label))
-                        .padding()
+                        .padding(8)
                         .background {
                             Circle()
-                                .foregroundColor(Color(uiColor: .secondaryLabel))
+                                .foregroundColor(Color(uiColor: .darkGray))
                         }
                 }//: Button
                 .buttonStyle(.plain)
-                Spacer()
             }//: HStack
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 22)
+            .padding(.bottom, 6)
             VStack(spacing: 20) {
                 CustomSearchBar(searchText: $search)
                 if search != "" {
-                    ForEach(mealService.searchMeal, id: \.self) { meal in
+                    if !mealService.searchMeal.isEmpty {
+                        ForEach(mealService.searchMeal, id: \.self) { meal in
                         NavigationLink(value: meal) {
                             MealSearchCellView(meal: meal)
                                 .foregroundColor(Color(uiColor: .label))
                         }
                         .buttonStyle(.plain)
-                    }//: ForEach
+                        }//: ForEach
+                    } else {
+                        VStack(alignment: .center) {
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .foregroundStyle(Color(uiColor: .darkGray))
+                                .frame(width: 80, height: 80, alignment: .center)
+                            
+                            Text("No Results for \"\(search)\"")
+                                .font(.title2.bold())
+                            
+                            Text("Check the spelling or try a new search.")
+                                .font(.headline)
+                                .foregroundStyle(.secondary.opacity(0.65))
+                        }
+                    }
+                } else {
+                    Spacer()
+                    
+                    VStack(alignment: .center) {
+                        Image(systemName: "magnifyingglass")
+                            .resizable()
+                            .foregroundStyle(Color(uiColor: .darkGray))
+                            .frame(width: 80, height: 80, alignment: .center)
+                        
+                        Text(randomString)
+                            .font(.title2.bold())
+                        
+                        Text("Try searching for \"\(mealIdeaString)\"")
+                            .font(.headline)
+                            .foregroundStyle(.secondary.opacity(0.65))
+                    }
+                    .padding(.top, 150)
                 }
             }
             .padding(.horizontal, 12)
@@ -53,6 +116,14 @@ struct MealSearchView: View {
                 await mealService.fetchSearchedMeal(search: newValue)
             }
         }
+        
+        .onAppear {
+            let placeHolderIndex = Int.random(in: 0..<placeholderStrings.count)
+            randomString = placeholderStrings[placeHolderIndex]
+            
+            let mealIdeaIndex = Int.random(in: 0..<mealIdeasStrings.count)
+            mealIdeaString = mealIdeasStrings[mealIdeaIndex]
+        }
     }
 }
 
@@ -61,6 +132,7 @@ struct MealSearchView_Previews: PreviewProvider {
         NavigationStack{
             MealSearchView()
                 .environmentObject(MealService())
+                .preferredColorScheme(.dark)
         }
     }
 }
