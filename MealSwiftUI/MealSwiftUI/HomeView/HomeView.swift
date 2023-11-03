@@ -42,7 +42,7 @@ struct HomeView: View {
                     Button {
                         isLoginViewPresented.toggle()
                     } label: {
-                        Image(systemName: "person.fill")
+                        Image(systemName: "star.fill")
                     }
                     .frame(width: 60, height: 60)
                     .background(Color(uiColor: .secondarySystemFill))
@@ -53,12 +53,33 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
                 TopHomeView()
                 HStack(spacing: 12, content: {
-                    CustomSearchBar(searchText: searchTextBinding)
+                    RoundedRectangle(cornerRadius: 25.0)
+                        .overlay {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.gray)
+                                    .padding(.leading, 10)
+                                    .frame(height: 12)
+                                
+                                Divider()
+                                    .frame(height: 30)
+                                
+                                Text("Search")
+                                    .foregroundStyle(.gray)
+                                
+                                Spacer()
+                            }
+                        }
+                        .foregroundStyle(Color(.systemGray5))
+                        .frame(height: 40)
                         .onTapGesture {
                             homeVM.isSearchTapped.toggle()
                         }
                         .padding(.horizontal, 20)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 12)
+                        .onDisappear {
+                            
+                        }
                 })
                 
                 

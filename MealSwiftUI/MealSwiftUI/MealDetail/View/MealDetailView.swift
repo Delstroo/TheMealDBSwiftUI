@@ -31,14 +31,13 @@ struct MealDetailView: View {
                                         .font(.title)
                                         .foregroundColor(Color(uiColor: .label))
                                         .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Image(systemName: "chevron.up")
+                                        .foregroundColor(.blue)
+                                        .font(.title3)
+                                        .rotationEffect(.degrees(detailVM.isIngredientsTapped ? 0 : 180)) // Rotate 180 degrees when transitioning
+                                        .padding(.trailing, 8)
 
-                                    Button(detailVM.isIngredientsTapped ? "See less" : "See more") {
-                                        withAnimation {
-                                            detailVM.isIngredientsTapped.toggle()
-                                        }
-                                    }
-                                    .foregroundColor(.blue)
-                                    .font(.title3)
                                 }//: HStack
                                 .padding(.horizontal, 8)
                                 .padding(.bottom, 10)

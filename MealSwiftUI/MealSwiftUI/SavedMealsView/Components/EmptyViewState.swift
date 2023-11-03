@@ -25,11 +25,20 @@ struct EmptyViewState: View {
                 .foregroundColor(Color(uiColor: .secondaryLabel))
                 .padding(.horizontal)
             
-            Text("You can add your favorite meals by tapping the 'Add Meal' button.")
+            Text("You can add your favorite meals by tapping the")
                 .foregroundColor(Color(uiColor: .secondaryLabel))
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
-                .padding(.bottom, 24)
+                .padding(.bottom, 0)
+            
+            HStack(alignment: .center) {
+                Image(systemName: "star")
+                    .foregroundStyle(.yellow)
+                
+                Text("button.")
+                    .foregroundColor(Color(uiColor: .secondaryLabel))
+            }
+            .padding(.bottom, 24)
             
             
             Button(action: {

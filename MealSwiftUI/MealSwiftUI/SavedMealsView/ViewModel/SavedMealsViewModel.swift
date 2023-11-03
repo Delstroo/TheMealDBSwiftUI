@@ -13,30 +13,35 @@ class SavedMealsViewModel: ObservableObject {
     
     var meal: Meals?
     var categoryDescription: Categories?
-    
+    var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
+
     @Published var isIngredientsTapped: Bool = false
     @Published var detailMeals: [Meals] = []
-
-    init(meal: Meals) {
-        self.meal = meal
-    }
-    
-    init(categoryDescription: Categories) {
-        self.categoryDescription = categoryDescription
-    }
+    @Published var meals: [Meals] = []
     
     @MainActor
     func fetchMealsDetail() async {
         do {
-            if let meal = meal {
-                // Fetch details for the provided meal
-                detailMeals = try await mealRepo.getMealDetail(mealId: meal.idMeal).meals ?? []
-            } else if let categoryDescription = categoryDescription {
+            for savedMeal in savedMeals {
+                print(savedMeal)
                 // Fetch details for the provided category
-                detailMeals = try await mealRepo.getMealDetail(mealId: categoryDescription.idMeal).meals ?? []
+                detailMeals = try await mealRepo.getMealDetail(mealId: savedMeal).meals ?? []
+                if let meal = detailMeals.first {
+                    meals.append(meal)
+                }
+            }
+            
+            print(meals)
+
+            // Iterate over the detailMeals and add them to savedMeals if not already present
+            for detailMeal in detailMeals {
+                if !savedMeals.contains(detailMeal.strMeal ?? "") {
+                    savedMeals.append(detailMeal.strMeal ?? "")
+                }
             }
         } catch {
             print(error.localizedDescription)
         }
     }
+
 }

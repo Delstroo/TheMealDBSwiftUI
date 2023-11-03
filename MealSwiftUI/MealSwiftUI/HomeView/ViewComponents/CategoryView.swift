@@ -37,7 +37,6 @@ struct CategoryView: View {
                                 Text(category.strMeal)
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)
-                                    .bold()
                                     .foregroundColor(.white)
                                     .frame(width: width - 16, alignment: .leading)
                                     .padding(.leading, 8)
@@ -50,13 +49,13 @@ struct CategoryView: View {
                                 }, label: {
                                     RoundedRectangle(cornerRadius: 6)
                                         .frame(width: 40, height: 40)
-                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground).opacity(0.35))
+                                        .foregroundStyle(Color(uiColor: .black).opacity(0.35))
                                         .background(.clear)
                                     
                                         .overlay {
                                             RoundedRectangle(cornerRadius: 6)
                                                 .frame(width: 30, height: 30)
-                                                .foregroundStyle(Color(uiColor: .systemBackground).opacity(0.75))
+                                                .foregroundStyle(Color(uiColor: .black).opacity(0.75))
                                             
                                             Image(systemName: isStarred ? "star.fill" : "star")
                                                 .foregroundStyle(.yellow.opacity(0.65))
