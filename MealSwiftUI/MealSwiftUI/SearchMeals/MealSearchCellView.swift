@@ -22,8 +22,8 @@ struct MealSearchCellView: View {
                         .frame(width: 90, height: 100)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 } placeholder: {
-                    Image(systemName: "photo.artframe")
-                        .imageScale(.large)
+                    ProgressView()
+                        .frame(width: 90, height: 100)
                 }//: AsyncImage
                 VStack(alignment: .leading, spacing: 8) {
                     Text(meal.strMeal ?? "")
