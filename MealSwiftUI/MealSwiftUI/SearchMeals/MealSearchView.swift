@@ -13,16 +13,17 @@ struct MealSearchView: View {
     @State var search: String = ""
     @State var randomString = ""
     @State var mealIdeaString = ""
-    var placeholderStrings = ["Discover a Delicious Meal",
-                              "Find Your Next Culinary Adventure",
-                              "Search for a Tasty Dish",
-                              "Looking for a New Recipe?",
-                              "Explore Exciting Meal Ideas",
-                              "Start Your Food Journey Here",
-                              "Hungry for Inspiration?",
-                              "Try a New Culinary Experience",
-                              "On the Hunt for Yummy Recipes?",
-                              "Search for Your Next Favorite Dish"]
+    @State private var savedMeals: [String] = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
+    var placeholderStrings = ["Discover a Delicious Meal 🍽️",
+                              "Find Your Next Culinary Adventure 🍴",
+                              "Search for a Tasty Dish 🍔",
+                              "Looking for a New Recipe? 🍳",
+                              "Explore Exciting Meal Ideas 🥗",
+                              "Start Your Food Journey Here 🌮",
+                              "Hungry for Inspiration? 🍕",
+                              "Try a New Culinary Experience 🍜",
+                              "On the Hunt for Yummy Recipes? 🍰",
+                              "Search for Your Next Favorite Dish 🍛"]
     
     var mealIdeasStrings = ["Beef Wellington",
                            "English Breakfast",
@@ -109,7 +110,7 @@ struct MealSearchView: View {
         .background(Color("bgColor"))
 
         .navigationDestination(for: Meals.self) { meal in
-            MealDetailView(detailVM: DetailViewModel(meal: meal))
+            MealDetailView(detailVM: DetailViewModel(meal: meal), isStarred: savedMeals.contains(meal.idMeal))
         }
         .onChange(of: search) { newValue in
             Task {

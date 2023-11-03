@@ -22,7 +22,7 @@ struct SavedMealsView: View {
                     ]) {
                         ForEach(viewModel.meals, id: \.self) { meal in
                             NavigationLink(
-                                destination:  MealDetailView(detailVM: DetailViewModel(meal: meal)),
+                                destination:  MealDetailView(detailVM: DetailViewModel(meal: meal), isStarred:  savedMeals.contains(meal.idMeal)),
                                 tag: meal,
                                 selection: $selectedMeal
                             ) {

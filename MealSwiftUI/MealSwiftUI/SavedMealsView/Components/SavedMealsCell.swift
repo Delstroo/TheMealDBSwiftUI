@@ -75,6 +75,9 @@ struct SavedMealsCell: View {
             }//: VStack
            
             .padding()
+            .onAppear {
+                checkIsStarred()
+            }
     }
     
     func checkIsStarred() {

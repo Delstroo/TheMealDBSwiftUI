@@ -10,7 +10,8 @@ import SwiftUI
 struct MealDetailView: View {
     @EnvironmentObject var mealService: MealService
     @StateObject var detailVM: DetailViewModel
-    
+    @State var isStarred: Bool
+
     var body: some View {
         ScrollView {
             VStack {
@@ -19,6 +20,34 @@ struct MealDetailView: View {
                         // DetailImageView with matchedGeometryEffect
                         DetailImageView(meal: meals)
                         VStack {
+                            
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: {
+                                    addToSavedMeals()
+                                }, label: {
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .frame(width: 40, height: 40)
+                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground).opacity(0.65))
+                                        .background(.clear)
+                                    
+                                        .overlay {
+                                            RoundedRectangle(cornerRadius: 6)
+                                                .frame(width: 30, height: 30)
+                                                .foregroundStyle(Color(uiColor: .secondarySystemBackground))
+                                            
+                                            Image(systemName: isStarred ? "star.fill" : "star")
+                                                .foregroundStyle(.yellow.opacity(0.65))
+                                        }
+                                })
+                                .padding(.horizontal, 4)
+                            }
+                            
+                            Text(meals.strMeal ?? "")
+                                .font(.title.weight(.semibold))
+                                .padding(.horizontal)
+                                .padding(.bottom)
                             // Ingredients toggle button
                             Button(action: {
                                 // Toggle the drop-down state for ingredients
@@ -88,12 +117,38 @@ struct MealDetailView: View {
         .background(Color("bgColor"))
         .task {
             await detailVM.fetchMealsDetail()
+            checkIsStarred()
         }
+    }
+    
+    func checkIsStarred() {
+        if let savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals"),
+           savedMeals.contains(detailVM.detailMeals[0].idMeal) {
+            isStarred = true
+        } else {
+            isStarred = false
+        }
+    }
+    
+    func addToSavedMeals() {
+        var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
+
+        if isStarred {
+            // If it's already starred, remove it
+            savedMeals.removeAll { $0 == detailVM.detailMeals[0].idMeal }
+            isStarred = false // Update isStarred
+        } else {
+            // If it's not starred, add it
+            savedMeals.append(detailVM.detailMeals[0].idMeal)
+            isStarred = true // Update isStarred
+        }
+        
+        UserDefaults.standard.set(savedMeals, forKey: "SavedMeals")
     }
 }
 
 struct MealDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MealDetailView(detailVM: DetailViewModel(categoryDescription: .categoryDescriptionTest))
+        MealDetailView(detailVM: DetailViewModel(categoryDescription: .categoryDescriptionTest), isStarred: false)
     }
 }
