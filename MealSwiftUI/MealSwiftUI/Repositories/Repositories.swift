@@ -17,6 +17,7 @@ final class MealRepositories: MealRepositoryProtocol {
     
     func getMealDetail(mealId: String) async throws -> MealsResponse {
         let request = MealRequest.lookupFullMealDetailsById(mealId)
+        print(request)
         return try await requester.doRequest(request: request)
     }
     

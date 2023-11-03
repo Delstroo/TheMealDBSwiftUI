@@ -9,18 +9,22 @@ import SwiftUI
 
 struct CustomSearchBar: View {
     @Binding var searchText: String
-
+    
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.gray)
-
+                .padding(.leading, 10)
+            
+            Divider()
+                .frame(height: 30)
+            
             TextField("Search", text: $searchText)
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(8)
                 .background(Color(.systemGray5))
-                .cornerRadius(10)
-
+                .cornerRadius(25)
+            
             if !searchText.isEmpty {
                 Button(action: {
                     searchText = ""
@@ -33,7 +37,9 @@ struct CustomSearchBar: View {
                 .animation(.default)
             }
         }
-        .padding(.horizontal)
+        .background(Color(.systemGray5))
+        .frame(height: 40)
+        .clipShape(RoundedRectangle(cornerRadius: .infinity))
     }
 }
 
@@ -53,5 +59,6 @@ struct ContentView: View {
 struct CustomSearchBar_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
     }
 }

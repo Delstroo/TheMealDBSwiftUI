@@ -1,28 +1,28 @@
 //
-//  CategoryView.swift
+//  SavedMealsCell.swift
 //  MealSwiftUI
 //
-//  Created by Delstun McCray on 8/21/23.
+//  Created by Delstun McCray on 11/3/23.
 //
 
 import SwiftUI
 
-struct CategoryView: View {
-    var category: Categories
+struct SavedMealsCell: View {
+    var meal: Meals
     var width = UIScreen.main.bounds.width * 0.45
     
     @State private var isStarred: Bool
 
-    init(category: Categories) {
-            self.category = category
-            _isStarred = State(initialValue: UserDefaults.standard.stringArray(forKey: "SavedMeals")?.contains(category.idMeal) ?? false)
+    init(meal: Meals) {
+            self.meal = meal
+        _isStarred = State(initialValue: UserDefaults.standard.stringArray(forKey: "SavedMeals")?.contains(meal.idMeal) ?? false)
         }
     
     var body: some View {
             VStack(spacing: 12) {
-                if category.strMealThumb != nil{
+                if meal.strMealThumb != nil{
                     // In CategoryView.swift
-                    AsyncImage(url: category.strMealThumb) { img in
+                    AsyncImage(url: URL(string: meal.strMealThumb!)!) { img in
                         img
                             .resizable()
                             .scaledToFill()
@@ -34,9 +34,10 @@ struct CategoryView: View {
                                     .cornerRadius(12)
                             }
                             .overlay(alignment: .bottomLeading) {
-                                Text(category.strMeal)
+                                Text(meal.strMeal ?? "")
                                     .multilineTextAlignment(.leading)
                                     .font(.headline)
+                                    .bold()
                                     .foregroundColor(.white)
                                     .frame(width: width - 16, alignment: .leading)
                                     .padding(.leading, 8)
@@ -72,19 +73,17 @@ struct CategoryView: View {
                         .imageScale(.large)
                 }//: if else -asyncImage
             }//: VStack
+           
+            .padding()
             .onAppear {
                 checkIsStarred()
             }
-           
-            .padding()
     }
     
     func checkIsStarred() {
         if let savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals"),
-           savedMeals.contains(category.idMeal) {
+           savedMeals.contains(meal.idMeal) {
             isStarred = true
-        } else {
-            isStarred = false
         }
     }
     
@@ -93,11 +92,11 @@ struct CategoryView: View {
 
         if isStarred {
             // If it's already starred, remove it
-            savedMeals.removeAll { $0 == category.idMeal }
+            savedMeals.removeAll { $0 == meal.idMeal }
             isStarred = false // Update isStarred
         } else {
             // If it's not starred, add it
-            savedMeals.append(category.idMeal)
+            savedMeals.append(meal.idMeal)
             isStarred = true // Update isStarred
         }
         
@@ -105,11 +104,6 @@ struct CategoryView: View {
     }
 }
 
-
-
-struct CategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryView(category: .categoryDescriptionTest)
-            .preferredColorScheme(.dark)
-    }
+#Preview {
+    SavedMealsCell(meal: .mealTest)
 }

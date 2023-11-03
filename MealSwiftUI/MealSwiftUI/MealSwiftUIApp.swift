@@ -14,8 +14,10 @@ struct MealSwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(animation: MealSwiftUIApp.animation)
-                .environmentObject(mealService)
+            NavigationView {
+                HomeView(animation: MealSwiftUIApp.animation)
+                    .environmentObject(mealService)
+            }
         }
     }
 }
