@@ -72,6 +72,9 @@ struct CategoryView: View {
                         .imageScale(.large)
                 }//: if else -asyncImage
             }//: VStack
+            .onAppear {
+                checkIsStarred()
+            }
            
             .padding()
     }
@@ -80,6 +83,8 @@ struct CategoryView: View {
         if let savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals"),
            savedMeals.contains(category.idMeal) {
             isStarred = true
+        } else {
+            isStarred = false
         }
     }
     

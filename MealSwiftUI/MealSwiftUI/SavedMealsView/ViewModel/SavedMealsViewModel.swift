@@ -13,7 +13,7 @@ class SavedMealsViewModel: ObservableObject {
     
     var meal: Meals?
     var categoryDescription: Categories?
-    var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
+    @Published var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
 
     @Published var isIngredientsTapped: Bool = false
     @Published var detailMeals: [Meals] = []
@@ -23,7 +23,6 @@ class SavedMealsViewModel: ObservableObject {
     func fetchMealsDetail() async {
         do {
             for savedMeal in savedMeals {
-                print(savedMeal)
                 // Fetch details for the provided category
                 detailMeals = try await mealRepo.getMealDetail(mealId: savedMeal).meals ?? []
                 if let meal = detailMeals.first {
@@ -31,7 +30,6 @@ class SavedMealsViewModel: ObservableObject {
                 }
             }
             
-            print(meals)
 
             // Iterate over the detailMeals and add them to savedMeals if not already present
             for detailMeal in detailMeals {
