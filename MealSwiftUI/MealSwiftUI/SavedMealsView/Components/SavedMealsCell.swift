@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SavedMealsCell: View {
+    @StateObject var viewModel: SavedMealsViewModel = SavedMealsViewModel()
     var meal: Meals
     var width = UIScreen.main.bounds.width * 0.45
     
@@ -93,6 +94,7 @@ struct SavedMealsCell: View {
         if isStarred {
             // If it's already starred, remove it
             savedMeals.removeAll { $0 == meal.idMeal }
+            viewModel.meals.removeAll { $0.idMeal == meal.idMeal }
             isStarred = false // Update isStarred
         } else {
             // If it's not starred, add it
@@ -101,6 +103,7 @@ struct SavedMealsCell: View {
         }
         
         UserDefaults.standard.set(savedMeals, forKey: "SavedMeals")
+        checkIsStarred()
     }
 }
 
