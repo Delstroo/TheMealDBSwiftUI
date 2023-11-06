@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct SavedMealsCell: View {
-    @StateObject var viewModel: SavedMealsViewModel = SavedMealsViewModel()
+    @ObservedObject var viewModel: SavedMealsViewModel
     var meal: Meals
     var width = UIScreen.main.bounds.width * 0.45
     
     @State private var isStarred: Bool
 
-    init(meal: Meals) {
-            self.meal = meal
-        _isStarred = State(initialValue: UserDefaults.standard.stringArray(forKey: "SavedMeals")?.contains(meal.idMeal) ?? false)
-        }
+    init(meal: Meals, viewModel: SavedMealsViewModel) {
+        self.meal = meal
+        self.viewModel = viewModel
+        self._isStarred = State(initialValue: UserDefaults.standard.stringArray(forKey: "SavedMeals")?.contains(meal.idMeal) ?? false)
+    }
     
     var body: some View {
             VStack(spacing: 12) {
@@ -94,19 +95,18 @@ struct SavedMealsCell: View {
         if isStarred {
             // If it's already starred, remove it
             savedMeals.removeAll { $0 == meal.idMeal }
-            viewModel.meals.removeAll { $0.idMeal == meal.idMeal }
             isStarred = false // Update isStarred
+            viewModel.meals.removeAll { $0.idMeal == meal.idMeal }
         } else {
             // If it's not starred, add it
             savedMeals.append(meal.idMeal)
             isStarred = true // Update isStarred
         }
-        
+
         UserDefaults.standard.set(savedMeals, forKey: "SavedMeals")
-        checkIsStarred()
     }
 }
 
 #Preview {
-    SavedMealsCell(meal: .mealTest)
+    SavedMealsCell(meal: .mealTest, viewModel: SavedMealsViewModel())
 }
