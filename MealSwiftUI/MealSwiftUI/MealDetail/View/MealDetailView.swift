@@ -11,7 +11,8 @@ struct MealDetailView: View {
     @EnvironmentObject var mealService: MealService
     @StateObject var detailVM: DetailViewModel
     @State var isStarred: Bool
-
+    var savedVM: SavedMealsViewModel?
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -66,7 +67,7 @@ struct MealDetailView: View {
                                         .font(.title3)
                                         .rotationEffect(.degrees(detailVM.isIngredientsTapped ? 0 : 180)) // Rotate 180 degrees when transitioning
                                         .padding(.trailing, 8)
-
+                                    
                                 }//: HStack
                                 .padding(.horizontal, 8)
                                 .padding(.bottom, 10)
@@ -110,7 +111,7 @@ struct MealDetailView: View {
                         .background(Color("bgColor"))
                         .cornerRadius(20)
                     }
-
+                    
                 }
             }
         }
@@ -137,6 +138,9 @@ struct MealDetailView: View {
             // If it's already starred, remove it
             savedMeals.removeAll { $0 == detailVM.detailMeals[0].idMeal }
             isStarred = false // Update isStarred
+            if let savedVM {
+                savedVM.meals.removeAll { $0.idMeal == detailVM.detailMeals[0].idMeal }
+            }
         } else {
             // If it's not starred, add it
             savedMeals.append(detailVM.detailMeals[0].idMeal)
