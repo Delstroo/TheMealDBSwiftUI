@@ -12,7 +12,16 @@ struct HomeView: View {
     @StateObject var homeVM = HomeViewModel()
     @State private var selectedMeal: Categories?
     @State private var savedMeals: [String] = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
-
+    @State private var isSorted: Bool = false
+    
+    private var sortedCategories: [Categories] {
+        if isSorted {
+            return mealService.mealCategory.sorted(by: { $1.strMeal < $0.strMeal })
+        } else {
+            return mealService.mealCategory.sorted(by: { $0.strMeal < $1.strMeal })
+        }
+    }
+    
     var searchTextBinding: Binding<String> {
         Binding<String>(
             get: { self.homeVM.search },
@@ -28,9 +37,12 @@ struct HomeView: View {
             ScrollView {
                 HStack(spacing: 12) {
                     Button {
-                        
+                        isSorted.toggle()
                     } label: {
-                        Image(systemName: "line.3.horizontal.decrease")
+                        Image("sort")
+                            .resizable()
+                            .frame(width: 27, height: 27)
+                            .tint(.white)
                     }
                     .frame(width: 60, height: 60)
                     .background(Color(uiColor: .secondarySystemFill))
@@ -125,7 +137,7 @@ struct HomeView: View {
                     GridItem(.flexible()), // You can adjust .flexible() as needed
                     GridItem(.flexible())
                 ]) {
-                    ForEach(mealService.mealCategory, id: \.self) { meal in
+                    ForEach(sortedCategories, id: \.self) { meal in
                         NavigationLink(
                             destination:  MealDetailView(detailVM: DetailViewModel(categoryDescription: meal), isStarred: meal.isStarred),
                             tag: meal,
