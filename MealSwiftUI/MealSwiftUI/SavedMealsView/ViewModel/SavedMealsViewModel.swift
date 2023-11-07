@@ -12,7 +12,6 @@ class SavedMealsViewModel: ObservableObject {
     var mealRepo = MealRepositories()
     
     @Published var meal: Meals?
-    var categoryDescription: Categories?
     @Published var savedMeals = UserDefaults.standard.stringArray(forKey: "SavedMeals") ?? []
 
     @Published var isIngredientsTapped: Bool = false
