@@ -22,28 +22,7 @@ struct MealDetailView: View {
                         DetailImageView(meal: meals)
                         VStack {
                             
-                            HStack {
-                                Spacer()
-                                
-                                Button(action: {
-                                    addToSavedMeals()
-                                }, label: {
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .frame(width: 40, height: 40)
-                                        .foregroundStyle(Color(uiColor: .secondarySystemBackground).opacity(0.65))
-                                        .background(.clear)
-                                    
-                                        .overlay {
-                                            RoundedRectangle(cornerRadius: 6)
-                                                .frame(width: 30, height: 30)
-                                                .foregroundStyle(Color(uiColor: .secondarySystemBackground))
-                                            
-                                            Image(systemName: isStarred ? "star.fill" : "star")
-                                                .foregroundStyle(.yellow.opacity(0.65))
-                                        }
-                                })
-                                .padding(.horizontal, 4)
-                            }
+//                            HStack 	
                             
                             Text(meals.strMeal ?? "")
                                 .font(.title.weight(.semibold))

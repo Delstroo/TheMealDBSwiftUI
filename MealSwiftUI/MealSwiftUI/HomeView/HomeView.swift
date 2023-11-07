@@ -127,7 +127,7 @@ struct HomeView: View {
                 ]) {
                     ForEach(mealService.mealCategory, id: \.self) { meal in
                         NavigationLink(
-                            destination:  MealDetailView(detailVM: DetailViewModel(categoryDescription: meal), isStarred: savedMeals.contains(meal.idMeal)),
+                            destination:  MealDetailView(detailVM: DetailViewModel(categoryDescription: meal), isStarred: meal.isStarred),
                             tag: meal,
                             selection: $selectedMeal
                         ) {
