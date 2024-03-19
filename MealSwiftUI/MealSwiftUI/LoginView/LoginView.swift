@@ -155,7 +155,6 @@ struct LoginView: View {
                 self.isPopupVisible = true
                 return
             }
-//            self.loginStatusMessage = "Succ logged in, welcome back \(result?.user.uid ?? "")"
         }
     }
     
@@ -176,10 +175,7 @@ struct LoginView: View {
                     self.loginStatusMessage = "Failed to retrieve downloadURL: \(err)"
                     self.isPopupVisible = true
                     return
-                }
-                
-//                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                
+                }                
             }
             
         }
