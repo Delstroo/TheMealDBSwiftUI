@@ -111,7 +111,6 @@ struct HomeView: View {
                                     .resizable()
                                     .frame(width: 25, height: 25)
                                     .padding(.trailing, 12)
-                                //                                    .padding(.leading, 6)
                             }
                             .background {
                                 if mealService.categorySelected == category.rawValue {
