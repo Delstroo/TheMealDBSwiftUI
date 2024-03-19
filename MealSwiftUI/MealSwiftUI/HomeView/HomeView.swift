@@ -49,7 +49,7 @@ struct HomeView: View {
                     .foregroundColor(.primary)
                     .cornerRadius(15)
                     
-                    Spacer() // This will push the following button to the trailing edge
+                    Spacer()
                     
                     Button {
                         isLoginViewPresented.toggle()
@@ -61,7 +61,7 @@ struct HomeView: View {
                     .foregroundColor(.primary)
                     .cornerRadius(15)
                 }
-                .frame(maxWidth: .infinity) // This makes the HStack fill the width of the screen
+                .frame(maxWidth: .infinity)
                 .padding(.horizontal, 20)
                 TopHomeView()
                 HStack(spacing: 12, content: {
@@ -181,7 +181,7 @@ struct ContentView_Previews: PreviewProvider {
 
     static var previews: some View {
         HomeView(animation: animation)
-            .environmentObject(MealService()) // Provide the MealService environment object here
+            .environmentObject(MealService())
             .preferredColorScheme(.dark)
     }
 }
