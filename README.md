@@ -10,4 +10,4 @@ MealApp is a simple application that utilizes the MealDB API to provide users wi
 ## Technologies Used
 
 - Swift, SwiftUI
-- [MealDB API](https://www.themealdb.com/api.php) for recipe data
+- [MealDB API](https://www.themealdb.com/api.php)
