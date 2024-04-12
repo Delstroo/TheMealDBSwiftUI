@@ -141,9 +141,7 @@ struct LoginView: View {
                 self.loginStatusMessage = "Failed to create user: \(err.localizedDescription)"
                 self.isPopupVisible = true
                 return
-            }
-//            self.loginStatusMessage = "Succ created user, \(result?.user.uid ?? "")"
-            
+            }            
             self.persistImageToStorage()
         }
     }
