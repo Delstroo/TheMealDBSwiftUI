@@ -3,7 +3,7 @@ MealApp is a simple application that utilizes the MealDB API to provide users wi
 
 ## Features
 
-- Browse a wide range of recipes from MealDB API.
+- Browse a wide range of recipes from the MealDB API.
 - View detailed information about each recipe, including ingredients and instructions.
 - Save your favorite recipes to your personal list for quick access.
 
